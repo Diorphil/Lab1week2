@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import Week2Page from "./week-2/page";
 export default function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
@@ -58,6 +58,7 @@ export default function Home() {
           >
             Documentation
           </a>
+          <Week2Page></Week2Page>
         </div>
       </main>
     </div>
