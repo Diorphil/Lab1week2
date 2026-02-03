@@ -8,8 +8,7 @@ export default function Page() {
 	return (
 		<div>
 			<h1>Week 4</h1>
-			<p>Count: {count}</p>
-            <button onClick={() => setCount((c) => c + 1)}>Increment</button>
+			
             <NewItem />
 		</div>
 	);
