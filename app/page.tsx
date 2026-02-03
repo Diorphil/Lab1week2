@@ -12,6 +12,10 @@ export default function Home() {
         <Link href="/week-3">
           <button className=" m-5 p-10 bg-gray-600 text-white rounded-lg" type="button">week-3</button></Link>
       </div>
+      <div className=" flex justify-center items-start">
+        <Link href="/week-4">
+          <button className=" m-5 p-10 bg-gray-600 text-white rounded-lg" type="button">week-4</button></Link>
+      </div>
     </main>
   );
 
