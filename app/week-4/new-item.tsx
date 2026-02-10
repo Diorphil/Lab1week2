@@ -5,15 +5,27 @@ import { useState } from "react";
 export default function NewItem() {
 	const [name, setName] = useState("");
 	const [nameTouched, setNameTouched] = useState(false);
+	const [nameHasInvalidChars, setNameHasInvalidChars] = useState(false);
 	const [quantity, setQuantity] = useState(1);
 	const [category, setCategory] = useState("produce");
+
+	const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+		const hasInvalidChars = /[^a-zA-Z\s]/.test(value);
+		setNameHasInvalidChars(hasInvalidChars);
+		setName(value);
+	};
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 
-		if (!name || name.length < 2) {
+		if (!name || name.length < 2 || nameHasInvalidChars) {
 			setNameTouched(true);
-			alert("Name must be at least 2 characters.");
+			if (nameHasInvalidChars) {
+				alert("Name must contain only letters.");
+			} else {
+				alert("Name must be at least 2 characters.");
+			}
 			return;
 		}
 
@@ -26,6 +38,7 @@ export default function NewItem() {
 		setQuantity(1);
 		setCategory("produce");
 		setNameTouched(false);
+		setNameHasInvalidChars(false);
 	};
 
 	return (
@@ -37,16 +50,19 @@ export default function NewItem() {
 					<input
 						type="text"
 						value={name}
-						onChange={(e) => setName(e.target.value)}
+						onChange={handleNameChange}
 						onBlur={() => setNameTouched(true)}
 						placeholder="Enter item name"
 						required
 						className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
-							nameTouched && !name ? "border-red-500 focus:ring-red-300" : "border-gray-300 focus:ring-yellow-300"
+							(nameTouched && name.length < 2) || nameHasInvalidChars ? "border-red-500 focus:ring-red-300" : "border-gray-300 focus:ring-yellow-300"
 						}`}
 					/>
-					{(nameTouched && (!name || name.length < 2)) && (
-						<p className="text-red-500 text-sm mt-1">Name must be at least 2 characters.</p>
+					{nameHasInvalidChars && (
+						<p className="text-red-500 text-sm mt-1">Put only letters.</p>
+					)}
+					{(nameTouched && name.length < 2 && !nameHasInvalidChars) && (
+						<p className="text-red-500 text-sm mt-1">Name must be at least 2 letters.</p>
 					)}
 				</div>
 				<div>
@@ -84,7 +100,8 @@ export default function NewItem() {
 				<div className="pt-2">
 					<button
 						type="submit"
-						className="w-full py-2 rounded-md text-white font-medium bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-400 hover:opacity-95 shadow"
+						disabled={!name || name.length < 2 || nameHasInvalidChars}
+						className="w-full py-2 rounded-md text-white font-medium bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-400 hover:opacity-95 shadow disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-60"
 					>
 						Add Item
 					</button>
