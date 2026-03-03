@@ -4,8 +4,8 @@ export default function Home() {
     <main>
       <h1>CPRG 306: Web Development 2 - Assignments</h1>
          <div className=" flex justify-center items-start">
-        <Link className="p-10 bg-gray-600 text-white rounded-lg" href="/week-6">
-          <button type="button">week-6</button></Link>
+        <Link className="p-10 bg-gray-600 text-white rounded-lg" href="/week-7">
+          <button type="button">week-7</button></Link>
       </div>
       <div className=" flex justify-center items-start">
         <Link className="p-10 bg-gray-600 text-white rounded-lg" href="/week-2">
