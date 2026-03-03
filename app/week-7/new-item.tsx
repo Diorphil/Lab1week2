@@ -104,7 +104,7 @@ export default function NewItem({ onAddItem }: NewItemProps) {
           <button
             type="submit"
             disabled={!name || name.length < 2 || nameHasInvalidChars}
-            className="px-5 font-semibold text-white  from-blue-600 to-lightblue-500 hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed text-sm"
+            className="px-5 font-semibold text-white bg-gradient-to-br from-blue-600 to-lightblue-500 hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed text-sm"
           >
             Add
           </button>
